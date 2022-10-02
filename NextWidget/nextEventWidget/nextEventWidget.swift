@@ -22,11 +22,12 @@ struct Provider: IntentTimelineProvider {
     func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         var entries: [DayEntry] = []
 
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
+        // Generate a timeline consisting of seven entries a day apart, starting from the current date.
         let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = DayEntry(date: entryDate, configuration: configuration)
+        for dayOffest in 0 ..< 7 {
+            let entryDate = Calendar.current.date(byAdding: .day, value: dayOffest, to: currentDate)!
+            let startOfDate = Calendar.current.startOfDay(for: entryDate)
+            let entry = DayEntry(date: startOfDate, configuration: configuration)
             entries.append(entry)
         }
 
@@ -42,17 +43,24 @@ struct DayEntry: TimelineEntry {
 
 struct nextEventWidgetEntryView : View {
     var entry: DayEntry
+    var config: MonthlyConfig
+    
+    init(entry: DayEntry) {
+        self.entry = entry
+        self.config = MonthlyConfig.determineConfig(from: entry.date)
+    }
 
     var body: some View {
         ZStack{
-            ContainerRelativeShape().fill(.gray.gradient)
+            ContainerRelativeShape().fill(config.backgroundColor.gradient)
             VStack{
+                Text("Event name").font(.title2).fontWeight(.bold).minimumScaleFactor(0.7)
                 HStack(spacing: 4){
-                    Text("❄️").font(.title)
-                    Text(entry.date.weekdayDisplayFormat).font(.title3).fontWeight(.bold).minimumScaleFactor(0.7).foregroundColor(.black.opacity(0.7))
+                    Text(config.emojiText).font(.title)
+                    Text(entry.date.weekdayDisplayFormat).font(.title3).fontWeight(.bold).minimumScaleFactor(0.7).foregroundColor(config.weekdayTextColor.opacity(0.7))
                     Spacer()
                 }
-                Text(entry.date.dayDisplayFormat).font(.system(size: 80, weight: .heavy)).foregroundColor(.white.opacity(0.6))
+                Text(entry.date.dayDisplayFormat).font(.system(size: 80, weight: .heavy)).foregroundColor(config.dayTextColor.opacity(0.6))
             }
             .padding()
         }
@@ -68,15 +76,19 @@ struct nextEventWidget: Widget {
         IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
             nextEventWidgetEntryView(entry: entry)
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+        .configurationDisplayName("Styled Event Countdown widget")
+        .description("Theme of widget changes based on event type").supportedFamilies([.systemSmall])
     }
 }
 
 struct nextEventWidget_Previews: PreviewProvider {
     static var previews: some View {
-        nextEventWidgetEntryView(entry: DayEntry(date: Date(), configuration: ConfigurationIntent()))
+        nextEventWidgetEntryView(entry: DayEntry(date: dateToDisplay(year: 2022, month: 1, day: 22), configuration: ConfigurationIntent()))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
+    }
+    static func dateToDisplay(year: Int, month: Int, day:Int) -> Date {
+        let components = DateComponents(calendar:Calendar.current,year: year, month: month, day:day)
+        return Calendar.current.date(from: components)!
     }
 }
 

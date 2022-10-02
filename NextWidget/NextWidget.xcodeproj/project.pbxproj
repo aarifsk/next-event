@@ -18,6 +18,8 @@
 		3497C9E128E8DFC100AE757B /* nextEventWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 3497C9DD28E8DFBF00AE757B /* nextEventWidget.intentdefinition */; };
 		3497C9E228E8DFC100AE757B /* nextEventWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 3497C9DD28E8DFBF00AE757B /* nextEventWidget.intentdefinition */; };
 		3497C9E528E8DFC100AE757B /* nextEventWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 3497C9D428E8DFBF00AE757B /* nextEventWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3497C9EB28E8ED3C00AE757B /* MonthlyConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3497C9EA28E8ED3C00AE757B /* MonthlyConfig.swift */; };
+		3497C9ED28E8EE8700AE757B /* Colors+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3497C9EC28E8EE8700AE757B /* Colors+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,8 @@
 		3497C9DD28E8DFBF00AE757B /* nextEventWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = nextEventWidget.intentdefinition; sourceTree = "<group>"; };
 		3497C9DE28E8DFC100AE757B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3497C9E028E8DFC100AE757B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3497C9EA28E8ED3C00AE757B /* MonthlyConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyConfig.swift; sourceTree = "<group>"; };
+		3497C9EC28E8EE8700AE757B /* Colors+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Colors+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +134,8 @@
 			isa = PBXGroup;
 			children = (
 				3497C9DB28E8DFBF00AE757B /* nextEventWidget.swift */,
+				3497C9EA28E8ED3C00AE757B /* MonthlyConfig.swift */,
+				3497C9EC28E8EE8700AE757B /* Colors+Ext.swift */,
 				3497C9DD28E8DFBF00AE757B /* nextEventWidget.intentdefinition */,
 				3497C9DE28E8DFC100AE757B /* Assets.xcassets */,
 				3497C9E028E8DFC100AE757B /* Info.plist */,
@@ -249,6 +255,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				3497C9E128E8DFC100AE757B /* nextEventWidget.intentdefinition in Sources */,
+				3497C9ED28E8EE8700AE757B /* Colors+Ext.swift in Sources */,
+				3497C9EB28E8ED3C00AE757B /* MonthlyConfig.swift in Sources */,
 				3497C9DC28E8DFBF00AE757B /* nextEventWidget.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
